@@ -11,12 +11,12 @@ onMounted(async () => {
 </script>
 
 <template>
-	<div class="bg-white shadow-md rounded-2xl p-6 w-80">
-		<h2 class="text-xl font-semibold text-gray-800 mb-2">
+	<div :class="[VIX?.color?.background, VIX?.color?.text, 'rounded-2xl py-2 px-4 inline-block']">
+		<h2 :class="['text-xl font-semibold text-gray-800 mb-1']">
 			VIX
 		</h2>
-		<p class="text-gray-500 text-sm mb-4">
-			{{ VIX }}
+		<p class="text-gray-500 text-sm">
+			{{ VIX?.value || 0 }}
 		</p>
 	</div>
 </template>
