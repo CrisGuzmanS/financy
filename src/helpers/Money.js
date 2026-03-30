@@ -11,7 +11,6 @@ export class Money{
     static substract(firstValue, secondValue){
         firstValue = unformat(firstValue)
         secondValue = unformat(secondValue)
-        console.log(firstValue, secondValue)
         return Format.money(firstValue - secondValue)
     }
 

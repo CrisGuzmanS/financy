@@ -21,8 +21,7 @@ export const holdings = async () => {
         }
         
         holding.profit = Money.substract(holding.profit, holding.cost.average)
-        holding.profit = Money.divide(holding.profit, holding.cost.average)
-        holding.profit = unformat(holding.profit)
+        holding.profit = unformat(holding.profit) / unformat(holding.cost.average)
         holding.profit = Format.percentage(holding.profit)
     }
 

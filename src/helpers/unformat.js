@@ -11,11 +11,9 @@ export const unformat = (value) => {
     }
 
     if (value.startsWith('$')) {
-        console.log("🟠",value)
         value = value.replace('$', '');
         value = value.replace(/,/g, '')
         value = parseFloat(value);
-        console.log(value)
         return value;
 
     }
