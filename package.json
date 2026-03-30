@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
     "@tailwindcss/postcss": "^4.2.2",
     "collecty": "^5.10.0",
     "vue": "^3.5.30",
