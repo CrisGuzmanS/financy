@@ -1,4 +1,5 @@
 import { unformat } from "./unformat"
+import colors from "./colors"
 
 class SP500 {
     constructor(data) {
@@ -10,9 +11,13 @@ class SP500 {
     }
 
     get color() {
+
+        const drawdown = unformat(this.data.drawdown)
+
         return {
-            background: unformat(this.data.drawdown) < 0.03 ? 'bg-red-200' : unformat(this.data.drawdown) < 0.05 ? 'bg-orange-200' : unformat(this.data.drawdown) < 0.1 ? 'bg-yellow-200' : 'bg-green-200',
-            text: unformat(this.data.drawdown) < 0.03 ? 'text-red-600' : unformat(this.data.drawdown) < 0.05 ? 'text-orange-600' : unformat(this.data.drawdown) < 0.1 ? 'text-yellow-600' : 'text-green-600'
+            background: drawdown < 0.03 ? colors.background.red : drawdown < 0.05 ? colors.background.orange : drawdown < 0.1 ? colors.background.yellow : colors.background.green,
+            text: drawdown < 0.03 ? colors.text.red : drawdown < 0.05 ? colors.text.orange : drawdown < 0.1 ? colors.text.yellow : colors.text.green,
+            border: drawdown < 0.03 ? colors.border.red : drawdown < 0.05 ? colors.border.orange : drawdown < 0.1 ? colors.border.yellow : colors.border.green
         }
     }
 }
