@@ -5,3 +5,11 @@ import HelloWorld from './components/HelloWorld.vue'
 <template>
   <HelloWorld />
 </template>
+
+<style>
+html, body, #app {
+  min-height: 100%;
+  height: auto;
+  overflow-y: auto !important;
+}
+</style>
