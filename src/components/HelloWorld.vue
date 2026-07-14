@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import { vix } from '../helpers/vix';
 import { sp500 } from '../helpers/SP500';
 import { dolar } from '../helpers/dolar';
@@ -18,17 +18,29 @@ const STOCKS = ref(null)
 const dialog = ref(false)
 const toEdit = ref(null)
 
+let interval
+
 onMounted(async () => {
 	VIX.value = await vix()
 	SP500.value = await sp500()
 	DOLAR.value = await dolar()
 	HOLDINGS.value = await holdings()
-
+	
 	STOCKS.value = new StockCollection([])
 	for (const holding of HOLDINGS.value) {
 		STOCKS.value.push(await stock(holding.ticker))
 	}
+	
+	interval = setInterval(async () => {
+		VIX.value = await vix()
+		SP500.value = await sp500()
+		DOLAR.value = await dolar()
+		HOLDINGS.value = await holdings()
+	}, 10000)
+})
 
+onUnmounted(() => {
+	clearInterval(interval)
 })
 
 function openModal(holding) {
@@ -55,19 +67,22 @@ function closeModal() {
 					<h2 :class="['text-xl font-semibold mb-1']">
 						Acciones
 					</h2>
-					<input type="number" placeholder="Acciones" v-model="toEdit.quantity" class="border border-gray-300 rounded px-2 py-1" />
+					<input type="number" placeholder="Acciones" v-model="toEdit.quantity"
+						class="border border-gray-300 rounded px-2 py-1" />
 				</div>
 				<div class="mb-4">
 					<h2 :class="['text-xl font-semibold mb-1']">
 						Costo promedio
 					</h2>
-					<input type="number" placeholder="Costo promedio" v-model="toEdit.cost.average" class="border border-gray-300 rounded px-2 py-1" />
+					<input type="number" placeholder="Costo promedio" v-model="toEdit.cost.average"
+						class="border border-gray-300 rounded px-2 py-1" />
 				</div>
 				<div class="mb-4">
 					<h2 :class="['text-xl font-semibold mb-1']">
 						Costo total
 					</h2>
-					<input type="number" placeholder="Costo total" v-model="toEdit.cost.total" class="border border-gray-300 rounded px-2 py-1" />
+					<input type="number" placeholder="Costo total" v-model="toEdit.cost.total"
+						class="border border-gray-300 rounded px-2 py-1" />
 				</div>
 				<div class="mb-4">
 					<h2 :class="['text-xl font-semibold mb-1']">
@@ -122,11 +137,11 @@ function closeModal() {
 			<h1 :class="['text-xl font-semibold']">
 				{{ holding.ticker }}
 			</h1>
-	
+
 			<div :class="['shadow rounded-2xl pt-2 mb-2']">
-	
+
 				<div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-9 gap-0 bg-white">
-	
+
 					<div :class="['p-2 border-r']">
 						<h2 :class="['text-lg font-semibold mb-1']">
 							Costo actual
@@ -136,7 +151,7 @@ function closeModal() {
 								0) * unformat(DOLAR)) }}
 						</p>
 					</div>
-	
+
 					<div :class="['p-2 bg-green-200 text-green-600']">
 						<h2 :class="['text-lg font-semibold mb-1']">
 							Caida actual
@@ -145,7 +160,7 @@ function closeModal() {
 							-{{ STOCKS.where('ticker', holding.ticker).first()?.drawdown || 0 }}
 						</p>
 					</div>
-	
+
 					<div :class="['p-2 border-r']">
 						<h2 :class="['text-lg font-semibold mb-1']">
 							Número de acciones
@@ -198,14 +213,15 @@ function closeModal() {
 						<h2 :class="['text-lg font-semibold mb-1']">
 							Acciones
 						</h2>
-						<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" @click="openModal(holding)">
+						<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
+							@click="openModal(holding)">
 							Editar
 						</button>
 					</div>
 				</div>
-	
+
 			</div>
-	
+
 			<!-- badge -->
 			<div>
 				<span
