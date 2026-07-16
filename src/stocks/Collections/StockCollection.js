@@ -1,4 +1,4 @@
-import { Collection } from "collecty";
+import { Collection } from "@ellescript/collecty";
 import { Stock } from "../entities/Stock";
 
 export class StockCollection extends Collection {

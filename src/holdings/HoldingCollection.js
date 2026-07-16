@@ -1,4 +1,4 @@
-import { Collection } from "collecty";
+import { Collection } from "@ellescript/collecty";
 import { Holding } from "./Holding.js";
 
 export class HoldingCollection extends Collection {
