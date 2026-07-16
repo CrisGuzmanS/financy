@@ -1,4 +1,4 @@
 export const dolar = async () => {
-    const response = await fetch('http://127.0.0.1:3000/dolar')
+    const response = await fetch(import.meta.env.VITE_API_URL+'/dolar')
     return await response.text()
 }

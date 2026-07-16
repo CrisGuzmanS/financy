@@ -23,7 +23,7 @@ class SP500 {
 }
 
 export const sp500 = async () => {
-    let response = await fetch('http://127.0.0.1:3000/stocks/^GSPC')
+    let response = await fetch(import.meta.env.VITE_API_URL+'/stocks/^GSPC')
     response = await response.json()
     return new SP500(response.body)
 }
