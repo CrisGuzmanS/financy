@@ -23,7 +23,7 @@ class SP500 {
 }
 
 export const sp500 = async () => {
-    let response = await fetch('http://'+window.location.hostname+':' + import.meta.env.VITE_API_PORT+'/api/stocks/^GSPC')
+    let response = await fetch(  window.location.protocol + '//'+window.location.hostname+':' + import.meta.env.VITE_API_PORT+'/api/stocks/^GSPC')
     response = await response.json()
     return new SP500(response.body)
 }

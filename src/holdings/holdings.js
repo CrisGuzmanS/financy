@@ -6,7 +6,7 @@ import { stock } from "../stocks/stock"
 import { HoldingCollection } from "./HoldingCollection"
 
 export const holdings = async () => {
-    let response = await fetch('http://'+window.location.hostname+':' + import.meta.env.VITE_API_PORT+'/api/holdings')
+    let response = await fetch(  window.location.protocol + '//'+window.location.hostname+':' + import.meta.env.VITE_API_PORT+'/api/holdings')
     response = await response.json()
 
     // Se les asigna el holding profit
