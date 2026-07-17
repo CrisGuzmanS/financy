@@ -15,6 +15,6 @@ class Vix {
 }
 
 export const vix = async () => {
-    const response = await fetch('http://'+window.location.hostname+':3000'+'/vix')
+    const response = await fetch('http://'+window.location.hostname+':' + import.meta.env.VITE_API_PORT+'/api/vix')
     return new Vix(await response.json())
 }
