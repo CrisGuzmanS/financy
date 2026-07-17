@@ -1,4 +1,5 @@
 import colors from "./colors";
+import { API_BASE_URL } from "../config/api.js";
 
 class Vix {
     constructor(value) {
@@ -15,6 +16,6 @@ class Vix {
 }
 
 export const vix = async () => {
-    const response = await fetch(  window.location.protocol + '//'+window.location.hostname+':' + import.meta.env.VITE_API_PORT+'/api/vix')
+    const response = await fetch(API_BASE_URL + '/api/vix')
     return new Vix(await response.json())
 }
