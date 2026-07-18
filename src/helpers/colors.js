@@ -1,15 +1,15 @@
 export default {
     background: {
-        red: 'bg-red-200',
-        orange: 'bg-orange-200',
-        yellow: 'bg-yellow-200',
-        green: 'bg-green-200'
+        red: 'bg-rose-500',
+        orange: 'bg-orange-700',
+        yellow: 'bg-yellow-700',
+        green: 'bg-green-700'
     },
     text: {
-        red: 'text-red-600',
-        orange: 'text-orange-600',
-        yellow: 'text-yellow-600',
-        green: 'text-green-600'
+        red: 'text-red-100',
+        orange: 'text-orange-100',
+        yellow: 'text-yellow-100',
+        green: 'text-green-100'
     },
     border: {
         red: 'border-red-300',

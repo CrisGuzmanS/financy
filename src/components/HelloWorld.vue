@@ -25,12 +25,12 @@ onMounted(async () => {
 	SP500.value = await sp500()
 	DOLAR.value = await dolar()
 	HOLDINGS.value = await holdings()
-	
+
 	STOCKS.value = new StockCollection([])
 	for (const holding of HOLDINGS.value) {
 		STOCKS.value.push(await stock(holding.ticker))
 	}
-	
+
 	interval = setInterval(async () => {
 		VIX.value = await vix()
 		SP500.value = await sp500()
@@ -100,9 +100,11 @@ function closeModal() {
 		</v-card>
 	</v-dialog>
 
-	<div class="mb-4">
-		<div
-			:class="[VIX?.color?.background, VIX?.color?.text, VIX?.color?.border, 'rounded-2xl py-2 px-4 mr-4 inline-block border']">
+	<div class="mb-4 flex gap-4">
+		<div :class="[
+			VIX?.color?.background, VIX?.color?.text,
+			'flex-1 rounded-sm py-2 px-4 border'
+		]">
 			<h2 :class="['text-xl font-semibold mb-1']">
 				VIX
 			</h2>
@@ -111,8 +113,11 @@ function closeModal() {
 			</p>
 		</div>
 
-		<div
-			:class="[SP500?.color?.background, SP500?.color?.text, SP500?.color?.border, 'rounded-2xl py-2 px-4 mr-4 inline-block border']">
+		<div :class="[
+			SP500?.color?.background,
+			SP500?.color?.text,
+			'flex-1 rounded-sm py-2 px-4 border'
+		]">
 			<h2 :class="['text-xl font-semibold mb-1']">
 				S&P 500
 			</h2>
@@ -121,7 +126,9 @@ function closeModal() {
 			</p>
 		</div>
 
-		<div :class="['rounded-2xl py-2 px-4 inline-block bg-white mb-4 border border-gray-300 bg-gray-200']">
+		<div :class="[
+			'flex-1 rounded-sm py-2 px-4 border bg-white'
+		]">
 			<h2 :class="['text-xl font-semibold mb-1']">
 				DÓLAR
 			</h2>

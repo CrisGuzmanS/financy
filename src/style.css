@@ -13,7 +13,13 @@ html {
 }
 
 body {
-    background-color: #e3e0ff;
+    background: linear-gradient(
+        180deg,
+        #e5e7eb 0%,
+        #d1d5db 50%,
+        #c4c9d1 100%
+    );
+    min-height: 100vh;
     padding: 12px;
 }
 
