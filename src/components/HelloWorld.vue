@@ -9,6 +9,8 @@ import { StockCollection } from '../stocks/Collections/StockCollection';
 import { unformat } from '../helpers/unformat.js';
 import { Format } from '../helpers/Format.js';
 
+import Value from '../utils/Value.vue';
+
 const VIX = ref(null)
 const SP500 = ref(null)
 const DOLAR = ref(null)
@@ -101,41 +103,9 @@ function closeModal() {
 	</v-dialog>
 
 	<div class="mb-4 flex gap-4">
-		<div :class="[
-			VIX?.color?.background, VIX?.color?.text,
-			'flex-1 rounded-sm py-2 px-4 border'
-		]">
-			<h2 :class="['text-xl font-semibold mb-1']">
-				VIX
-			</h2>
-			<p class="text-sm">
-				{{ VIX?.value || 0 }}
-			</p>
-		</div>
-
-		<div :class="[
-			SP500?.color?.background,
-			SP500?.color?.text,
-			'flex-1 rounded-sm py-2 px-4 border'
-		]">
-			<h2 :class="['text-xl font-semibold mb-1']">
-				S&P 500
-			</h2>
-			<p class="text-sm">
-				-{{ SP500?.drawdown || 0 }}
-			</p>
-		</div>
-
-		<div :class="[
-			'flex-1 rounded-sm py-2 px-4 border bg-white'
-		]">
-			<h2 :class="['text-xl font-semibold mb-1']">
-				DÓLAR
-			</h2>
-			<p class="text-sm">
-				{{ DOLAR || 0 }} MXN
-			</p>
-		</div>
+		<Value title="VIX" :value="VIX?.value" :color="VIX?.color?.background" />
+		<Value title="S&P 500" :value="SP500?.drawdown" :color="SP500?.color?.background" />
+		<Value title="DÓLAR" :value="DOLAR" :color="'bg-indigo-600'" />
 	</div>
 
 	<template v-for="holding in HOLDINGS" :key="holding.ticker">
