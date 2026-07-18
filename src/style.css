@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -28,4 +29,8 @@ h1 {
     font-weight: 700;
     font-style: bold;
     font-size: 5rem !important;
+}
+
+.josefin {
+    font-family: 'Josefin Sans', sans-serif;
 }

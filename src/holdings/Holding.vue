@@ -10,30 +10,41 @@ defineProps({
 })
 
 function openModal(holding) {
-	toEdit.value = holding
-	dialog.value = true
+    toEdit.value = holding
+    dialog.value = true
 }
 
 </script>
 <template>
 
     <div class="mb-8">
-        <h1 :class="['text-xl font-semibold']">
+        <h3 :class="['inline-block font-semibold bg-indigo-600 text-white py-2 px-5 rounded-t-xl shadow-sm']">
             {{ holding.ticker }}
-        </h1>
+        </h3>
 
-        <div :class="['shadow rounded-2xl pt-2 mb-2']">
+        <div :class="['shadow rounded-2xl mb-2']">
 
-            <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-9 gap-0 bg-white">
+            <div class="grid grid-cols-1 gap-0 bg-white">
 
-                <div :class="['p-2 border-r']">
-                    <h2 :class="['text-lg font-semibold mb-1']">
-                        Costo actual
-                    </h2>
-                    <p class="text-sm">
-                        {{ Format.money(unformat(stock?.price ||
-                            0) * unformat(dolar)) }}
-                    </p>
+                <!-- Costo actual -->
+                <div class="p-2 border-r bg-blue-100 m-4">
+                    <div class="flex items-center justify-between">
+
+                        <h2 class="text-lg font-semibold flex items-center josefin">
+                            <span
+                                class="mr-2 bg-blue-300 text-blue-600 rounded-full w-8 h-8 flex items-center justify-center text-white text-sm">
+                                $
+                            </span>
+                            <span>
+                                Costo actual
+                            </span>
+                        </h2>
+
+                        <p class="text-sm font-semibold">
+                            {{ Format.money(unformat(stock?.price || 0) * unformat(dolar)) }}
+                        </p>
+
+                    </div>
                 </div>
 
                 <div :class="['p-2 bg-green-200 text-green-600']">
